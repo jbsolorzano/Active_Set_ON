@@ -11,7 +11,7 @@ function [xmin, iter,valor_min] = mActiveSet(G, c, A, b, D, d, x0, W0, maxIter)
 % D.- matriz de rxn 
 % d.- vector de rx1
 % x0.- vector de nx1, solución particular
-% W0.- Conjunto de índices iniciales de desigualdades donde se da igualdad;
+% W0.- Conjunto de índices iniciales donde se da igualdad (respecto a x0);
 
 %NOTA_1: Índices ={1,2,...,m,m+1,m+2,...,m+r}. Los primeros m corresponden a
     % las restricciones de igualdad; los últimos r índices corresponden a
@@ -46,7 +46,7 @@ end
 
 %Resolvemos subproblema cuadrático
 %min (1/2)p'Gp + p'g sa Ak*p 
-CA = W0'-m;
+CA = W0(m+1:end)'-m;
 CA = sort(CA);
 
 if(isempty(W0))
